@@ -17,7 +17,6 @@ class Student:
         greet_gen = random.choice(choices)
 
         construct_greeting = intro[intro_gen] + greet[greet_gen]
-        print(construct_greeting.format(self.name))
         return construct_greeting.format(self.name)
 
 
