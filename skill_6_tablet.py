@@ -55,23 +55,16 @@ class tablet:
             raise ValueError("Not Possible")
 
     def __repr__(self) -> str:
-        return f"tablet('{self._model}')"
+        return f"tablet(model='{self._model}', base_storage='{self._base_storage}', added_storage='{self._added_storage}', memory='{self._memory}')"
     
-    
-
-    # def storage(self, y):
-    #     if y <= 1024:
-    #         self._added_storage = y - self._base_storage
-    #         self.calculate_storage()
-    #     else:
-    #         raise ValueError("Not Possible")
 
 if __name__ == "__main__":
     t = tablet("pro")
-    ic(t)
+    
     ic(t.__dict__)
     t.add_storage(943)
     ic(t.__dict__)
     t.storage = 1000    
     ic(t.__dict__)
     ic(t.storage)
+    ic(t)
