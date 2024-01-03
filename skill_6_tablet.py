@@ -53,6 +53,14 @@ class tablet:
             self._added_storage = y - self._base_storage
         else:
             raise ValueError("Not Possible")
+        
+    @property
+    def memory(self):
+        return self._memory
+    
+    @property
+    def base_storage(self):
+        return self._base_storage
 
     def __repr__(self) -> str:
         return f"tablet(model='{self._model}', base_storage='{self._base_storage}', added_storage='{self._added_storage}', memory='{self._memory}')"
@@ -67,4 +75,6 @@ if __name__ == "__main__":
     t.storage = 1000    
     ic(t.__dict__)
     ic(t.storage)
+    ic(t.memory)
+    ic(t.base_storage)
     ic(t)
