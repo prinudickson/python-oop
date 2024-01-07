@@ -3,7 +3,7 @@ from icecream import ic
 class BankAccount:
 
     interest_rate = None
-    withdrawl_fee = None
+    withdrawal_fee = None
 
     def __init__(self, initial_balance):
         self._balance = initial_balance
@@ -30,10 +30,10 @@ class BankAccount:
         return f"A deposit of ${amount} deposited into the account"
     
     def withdraw(self, amount):
-        if self.withdrawl_fee is None:
+        if self.withdrawal_fee is None:
             self._balance -= amount
         else:
-            self._balance -= (amount + self.withdrawl_fee)
+            self._balance -= (amount + self.withdrawal_fee)
         return f"A withdrawl of ${amount} taken out of the account"
     
 
@@ -42,7 +42,10 @@ class Savings(BankAccount):
     
 class HighInterest(BankAccount):
     interest_rate = 0.007
-    withdrawl_fee = 5
+
+    def __init__(self, initial_balance=0, withdrawal_fee=5):
+        super().__init__(initial_balance)
+        self.withdrawal_fee = withdrawal_fee
 
 class LockedIn(BankAccount):
     interest_rate = 0.009
@@ -81,7 +84,7 @@ if __name__ == "__main__":
     ic(l.__dict__)
     ic(l.interest_rate)
 
-    h = HighInterest(100)
+    h = HighInterest(100, 10)
     h.pay_interest()
     ic(h)
     h.deposit(10)
