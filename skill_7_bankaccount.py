@@ -18,7 +18,8 @@ class BankAccount:
         return f"initial balance set as {balance}"
     
     def __repr__(self) -> str:
-        return f"A {self.__class__} with ${self.balance} in it"
+        instance_name = "".join([t.__name__ for t in type(self).__mro__[:-1]])
+        return f"A {instance_name} with ${self.balance} in it"
     
     def pay_interest(self):
         interest = self.balance * self.interest_rate
@@ -93,6 +94,8 @@ if __name__ == "__main__":
     ic(h)
     ic(h.__dict__)
     ic(h.interest_rate)
+
+    ic()
 
 
 
