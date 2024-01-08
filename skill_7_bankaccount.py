@@ -6,7 +6,7 @@ class BankAccount:
     withdrawal_fee = None
 
     def __init__(self, initial_balance):
-        self._balance = initial_balance
+        self.balance = initial_balance
 
     @property
     def balance(self):
