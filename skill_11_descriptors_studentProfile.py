@@ -19,6 +19,8 @@ class scoreField:
 
         if self.min < value < self.max:
             instance.__dict__[f'scoreField_{self.name}'] = value
+        else:
+            raise ValueError("Value not acceptable!")
 
     def __delete__(self, instance):
         del instance.__dict__[f'scoreField_{self.name}']
@@ -37,8 +39,12 @@ class textField:
         return instance.__dict__.get(f'textField_{self.name}')
     
     def __set__(self, instance, value):
+        ic(value)
         if not type(value) == str:
-            raise TypeError(f"Value should be a Int")
+            if value is None:
+                value = "None"
+        else:
+            raise TypeError(f"Value should be a Str")
 
         if len(value) <= self.length:
             instance.__dict__[f'textField_{self.name}'] = value
@@ -53,12 +59,23 @@ class studentProfile:
     gre_score = scoreField(130, 340)
     sat_score = scoreField(400, 1600)
 
+    def __init__(self, name = None, gre_score=130, sat_score=400) -> None:
+        self.name = name
+        self.gre_score = gre_score
+        self.sat_score = sat_score
+
 if __name__ == "__main__":
     s1 = studentProfile()
     s1.name = "Prinu"
     s1.gre_score = 200
     s1.sat_score = 500
     ic(s1.__dict__)
+    # s1.gre_score = 341
+    # ic(s1.__dict__)
+
+    s2 = studentProfile(name="Prinu", gre_score=140, sat_score=1200)
+    ic(s2.__dict__)
+    
 
 
 
