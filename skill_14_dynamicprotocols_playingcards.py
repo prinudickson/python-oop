@@ -66,7 +66,40 @@ class CardDeck:
             drawn_cards.append(self._cards.pop(idx))
         #randomly pick an index to draw from. 
         #take that item out
-        pass #return
+
+        if n == 1: 
+            return drawn_cards[0]
+        else:
+            return CardDeck(drawn_cards)
+        
+    def __repr__(self) -> str:
+        return f"CardDeck(cards={repr(self._cards)})"
+        
+if __name__ == "__main__":
+    shuffle_1 = CardDeck()
+
+    ic(shuffle_1)
+
+    shuffle_2 = CardDeck(cards=[PlayingCard('spades', '4')])
+    ic("*******************************")
+    ic(shuffle_2)
+
+    ic(shuffle_2 + PlayingCard('spades', '5'))
+
+    ic(PlayingCard('spades', '5') in shuffle_2 + PlayingCard('spades', '5'))
+
+    shuffle_3 = CardDeck(cards=[PlayingCard('spades', '4'), PlayingCard('hearts', 'King')])
+    ic("*******************************")
+    ic(shuffle_3)
+
+    for card in shuffle_3:
+        ic(card.rank)
+
+    # shuffle_4 = CardDeck(PlayingCard('spades', '4', '4'), PlayingCard('hearts', 'King'))
+
+    # ic(shuffle_4)
+
+
 
             
 
